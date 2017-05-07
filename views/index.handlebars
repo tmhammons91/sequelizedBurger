@@ -1,0 +1,66 @@
+<div class="container-fluid">
+
+
+    <div class="page-header">
+       
+
+        <video width="280" height="190" controls loop>
+  <source src="./assets/img/giphy.mp4" type="video/mp4">
+
+</video>
+        <h1> Eat-Da-Burger! </h1>
+    </div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <h3>Burger Menu</h3>
+            <ul>
+                {{#each Burger}} 
+                {{#unless this.devoured}}
+                <li>
+                    {{this.burger_name}}
+
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="devoured" value="true">
+                        <button type="submit">Devour It</button>
+                    </form>
+                </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+
+
+
+        <div class="col-md-4">
+            <h3>Add a Burger to the Menu</h3>
+            <form class="create-update-form" action="/" method="POST">
+
+                <div class="form-group">
+                    <label for="ca">Burger Type:</label>
+                    <input type="text" id="ca" name="burger_name">
+                </div>
+
+                <button type="submit">Add Burger</button>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <h3>Deliciousness Devoured!</h3>
+            <ul>
+                {{#each Burger}} 
+                {{#if this.devoured}}
+                <li>
+                    {{this.burger_name}}
+
+                    <!--form action="/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="devoured" value="true">
+
+                    </form-->
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+
+    </div>
